@@ -1,161 +1,156 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>معلومات عنا - أرقى ايجيبت</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>arqa admin</title>
+  <style>
+    :root{
+      --orange:#ff7a00;
+      --orange-700:#e86f00;
+      --black:#0b0b0b;
+      --gray-800:#1a1a1a;
+      --text:#fafafa;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--black),var(--gray-800));
+      color:var(--text);
+      min-height:100svh;  /* يدعم الموبايل */
+      display:flex;
+      flex-direction:column;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+    }
+
+    /* رأس الصفحة */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:1rem clamp(1rem,3vw,2rem);
+      border-bottom:1px solid #222;
+      background:#0f0f0f80;
+      backdrop-filter:saturate(150%) blur(6px);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.75rem;
+      font-weight:700; letter-spacing:.3px;
+    }
+    .badge{
+      inline-size:38px; block-size:38px; border-radius:10px;
+      display:grid; place-items:center; background:var(--orange); color:#000; font-weight:800;
+    }
+
+    /* الأزرار */
+    .actions{
+      display:flex; gap:.6rem; flex-wrap:wrap;
+    }
+    button.action{
+      appearance:none; border:0; cursor:pointer;
+      padding:.8rem 1rem; border-radius:12px;
+      background:#151515; color:var(--text);
+      border:1px solid #262626;
+      font-weight:600;
+      transition:.2s ease;
+    }
+    button.action:hover{ transform:translateY(-1px); border-color:#303030 }
+    button.action.primary{ background:var(--orange); color:#111; border-color:var(--orange-700) }
+    button.action.primary:hover{ background:var(--orange-700) }
+
+    /* منطقة العرض */
+    .viewer{
+      flex:1 1 auto;
+      padding: clamp(.75rem, 2vw, 1rem);
+    }
+    .frame-wrap{
+      position:relative;
+      inline-size:100%;
+      block-size: calc(100svh - 92px - clamp(.75rem, 2vw, 1rem)); /* ارتفاع كامل ناقص الهيدر */
+      background:#0f0f0f;
+      border:1px solid #222; border-radius:14px; overflow:hidden;
+      box-shadow: 0 10px 30px #00000055;
+    }
+    iframe{
+      inline-size:100%; block-size:100%;
+      border:0; background:#0f0f0f;
+    }
+
+    /* شاشة تحميل بسيطة */
+    .loader{
+      position:absolute; inset:0; display:grid; place-items:center;
+      background:linear-gradient(180deg,#0d0d0d,#111111); color:#aaa;
+      font-weight:600; letter-spacing:.5px;
+      transition: opacity .25s ease;
+    }
+    .loader.hidden{ opacity:0; pointer-events:none }
+
+    /* تحسينات صغيرة للشاشات الصغيرة */
+    @media (max-width:640px){
+      .brand{ font-size:1rem }
+      .badge{ inline-size:32px; block-size:32px }
+      button.action{ padding:.7rem .9rem }
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">أرقى ايجيبت</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">الصفحة الرئيسية</a></li>
-        <li><a href="about.html" class="active">معلومات عنا</a></li>
-        <li><a href="services.html">خدماتنا</a></li>
-        <li><a href="gallery.html">اعمالنا السابقة</a></li>
-        <li><a href="contact.html">تواصل معنا</a></li>
-        <li><a href="calculator.html">حاسبة الأسعار</a></li>
-      </ul>
-    </nav>
+    <div class="brand">
+      <span class="badge">A</span>
+      <span>arqa admin</span>
+    </div>
+
+    <div class="actions">
+      <!-- غيّر الخصائص data-url بالروابط التي سترسلها -->
+      <button class="action primary" data-target="viewer" data-url="https://arqa-egypt.com:2096/adminpanel">دخول</button>
+      <button class="action" data-target="viewer" data-url="https://arqa-egypt.com:2096/cpsess6592515959/webmail/jupiter/mail/change_password.html">تغيير كلمة المرور</button>
+    </div>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero" style="background: url('https://picsum.photos/1920/600?random=20') no-repeat center/cover;">
-      <h2>من نحن - أرقى ايجيبت</h2>
-      <p>خبرة وجودة تبني المستقبل</p>
-    </section>
-
-    <!-- About Content -->
-    <section class="section-padding">
-      <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-bottom: 60px;">
-        <div style="flex: 1; min-width: 300px;">
-          <h2 class="section-heading" style="text-align: right;">من نحن</h2>
-          <p style="line-height: 1.8; font-size: 18px; margin-bottom: 20px;">
-            في <strong>أرقى ايجيبت</strong> نؤمن بأن الجودة تبدأ من فريق عمل قوي ومؤهل. 
-            نمتلك فريقًا محترفًا قادرًا على تغطية جميع محافظات الجمهورية، وتنفيذ جميع أنواع المشاريع مهما كان حجمها أو متطلباتها.
-          </p>
-          <p style="line-height: 1.8; font-size: 18px; margin-bottom: 20px;">
-            نتميز بتقديم تصميمات فريدة ومخصصة لكل عميل، حيث نعمل على دراسة احتياجات كل مشروع بعناية لنضمن لك تنفيذًا دقيقًا يتناسب تمامًا مع ذوقك الخاص.
-          </p>
-          <p style="line-height: 1.8; font-size: 18px;">
-            نستخدم أفضل الخامات وأحدث التقنيات لنقدم لك منتجات تجمع بين الجمال، الجودة، والعملية، مع الالتزام التام بالمواعيد ومعايير السلامة.
-          </p>
-        </div>
-        <div style="flex: 1; min-width: 300px;">
-          <img src="https://picsum.photos/600/500?random=21" alt="من نحن" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision and Mission -->
-    <section class="section-padding" style="background-color: #f4f8ff;">
-      <h2 class="section-heading">رؤيتنا ورسالتنا</h2>
-      <div class="grid-container">
-        <div class="card">
-          <i class="fas fa-eye" style="font-size: 48px; color: #FDCB00; margin-bottom: 20px;"></i>
-          <h3>رؤيتنا</h3>
-          <p>
-            أن نكون الخيار الأول للألوميتال والسيكوريت في مصر، من خلال تقديم منتجات مبتكرة وتصاميم عصرية تلبي احتياجات عملائنا وتفوق توقعاتهم.
-          </p>
-        </div>
-        <div class="card">
-          <i class="fas fa-bullseye" style="font-size: 48px; color: #FDCB00; margin-bottom: 20px;"></i>
-          <h3>رسالتنا</h3>
-          <p>
-            تقديم خدمات عالية الجودة بأسعار مناسبة، مع الالتزام بالشفافية والاحترافية في التعامل مع جميع العملاء، وضمان رضاهم التام.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Values -->
-    <section class="section-padding">
-      <h2 class="section-heading">قيمنا</h2>
-      <div class="grid-container">
-        <div class="card">
-          <i class="fas fa-handshake" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>الثقة</h3>
-          <p>نبني علاقات طويلة الأمد مع عملائنا قائمة على الثقة المتبادلة والشفافية في التعامل.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-star" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>الجودة</h3>
-          <p>نلتزم بأعلى معايير الجودة في جميع مراحل العمل من التصميم وحتى التسليم النهائي.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-lightbulb" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>الابتكار</h3>
-          <p>نسعى دائماً لتطوير حلول مبتكرة ومواكبة أحدث التقنيات في مجال الألوميتال والزجاج.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-users" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>فريق العمل</h3>
-          <p>نؤمن بأهمية الاستثمار في فريق العمل وتطوير مهاراتهم لضمان أفضل النتائج.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-clock" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>الالتزام</h3>
-          <p>نحترم المواعيد المحددة ونلتزم بتسليم المشاريع في الوقت المتفق عليه.</p>
-        </div>
-        <div class="card">
-          <i class="fas fa-heart" style="font-size: 48px; color: #1A2B42; margin-bottom: 15px;"></i>
-          <h3>رضا العملاء</h3>
-          <p>رضا عملائنا هو هدفنا الأول ونسعى دائماً لتقديم تجربة استثنائية لهم.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="section-padding" style="background-color: #1A2B42; color: white;">
-      <h2 style="color: white; text-align: center; margin-bottom: 40px;">لماذا تختار أرقى ايجيبت؟</h2>
-      <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 300px;">
-          <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <i class="fas fa-check-circle" style="color: #FDCB00; font-size: 24px; margin-left: 15px;"></i>
-            <span style="font-size: 18px;">خبرة طويلة وفريق محترف</span>
-          </div>
-          <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <i class="fas fa-check-circle" style="color: #FDCB00; font-size: 24px; margin-left: 15px;"></i>
-            <span style="font-size: 18px;">تنوع في الخدمات والتصاميم</span>
-          </div>
-          <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <i class="fas fa-check-circle" style="color: #FDCB00; font-size: 24px; margin-left: 15px;"></i>
-            <span style="font-size: 18px;">التزام كامل بالمواعيد</span>
-          </div>
-          <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <i class="fas fa-check-circle" style="color: #FDCB00; font-size: 24px; margin-left: 15px;"></i>
-            <span style="font-size: 18px;">أسعار تنافسية</span>
-          </div>
-          <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <i class="fas fa-check-circle" style="color: #FDCB00; font-size: 24px; margin-left: 15px;"></i>
-            <span style="font-size: 18px;">خدمة ما بعد البيع</span>
-          </div>
-        </div>
-        <div style="flex: 1; min-width: 300px;">
-          <img src="https://picsum.photos/600/400?random=22" alt="لماذا تختارنا" style="width: 100%; border-radius: 12px;">
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="section-padding text-center">
-      <h2 class="section-heading">انضم إلى عائلتنا وحقق النجاح معنا</h2>
-      <p style="font-size: 18px; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
-        نبحث عن شركاء مميزين للانضمام إلى شبكتنا المتنامية. إذا كنت تاجراً مهتماً بالتعامل معنا أو مهندساً يسعى للتعاون معنا في مشاريع مميزة، فنحن نتطلع للعمل معك لتحقيق الإنجازات.
-      </p>
-      <button class="btn" onclick="window.location.href='contact.html'">اتصل بنا الآن</button>
-    </section>
+  <main class="viewer">
+    <div class="frame-wrap">
+      <div id="loader" class="loader">يتم التحميل…</div>
+      <!-- المحتوى يظهر هنا داخل فريم حتى لا يظهر الرابط في شريط العنوان -->
+      <iframe id="viewer" title="arqa admin viewer" sandbox="allow-forms allow-scripts allow-same-origin allow-popups"></iframe>
+    </div>
   </main>
 
-  <footer>
-    <p>© 2025 جميع الحقوق محفوظة - أرقى ايجيبت</p>
-  </footer>
+  <script>
+    // ضع روابطك في الأزرار أعلاه أو مرّر ?view=login / ?view=pass عبر العنوان
+    const iframe = document.getElementById('viewer');
+    const loader = document.getElementById('loader');
 
+    function loadInFrame(url){
+      loader.classList.remove('hidden');
+      iframe.src = url;
+    }
+    iframe.addEventListener('load', ()=> loader.classList.add('hidden'));
+
+    // ربط الأزرار
+    document.querySelectorAll('button[data-url]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        loadInFrame(btn.dataset.url);
+        // تمييز الزر النشط
+        document.querySelectorAll('.actions .action').forEach(b=>b.classList.remove('primary'));
+        btn.classList.add('primary');
+      });
+    });
+
+    // اختيار افتراضي بناءً على بارامتر بالعنوان
+    const params = new URLSearchParams(location.search);
+    const view = params.get('view'); // login | pass
+    const defaults = {
+      login: document.querySelector('button[data-url]').dataset.url,
+      pass: document.querySelectorAll('button[data-url]')[1].dataset.url
+    };
+    loadInFrame(view === 'pass' ? defaults.pass : defaults.login);
+  </script>
 </body>
 </html>
