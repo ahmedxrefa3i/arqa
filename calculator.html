@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة الأسعار - أرقى ايجيبت</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .calculator-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .calculator {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .calculator:hover {
+      transform: translateY(-5px);
+    }
+    
+    .calculator h3 {
+      margin-top: 0;
+      margin-bottom: 25px;
+      padding: 15px;
+      border-radius: 8px;
+      color: white;
+      font-size: 22px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .calculator h3 i {
+      margin-left: 10px;
+      font-size: 24px;
+    }
+    
+    .alum { background: linear-gradient(135deg, #1A2B42, #2c4a6b); }
+    .secu { background: linear-gradient(135deg, #28a745, #34ce57); }
+    .shut { background: linear-gradient(135deg, #ff5722, #ff7043); }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #1A2B42;
+    }
+    
+    input, select {
+      width: calc(100% - 24px);
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      font-size: 16px;
+      transition: border-color 0.3s;
+      direction: rtl;
+      text-align: right;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: #FDCB00;
+    }
+    
+    .calc-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #FDCB00, #e0b300);
+      color: #1A2B42;
+      font-weight: bold;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+    
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(253, 203, 0, 0.3);
+    }
+    
+    .result {
+      background: linear-gradient(135deg, #f4f8ff, #e8f2ff);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      border: 2px solid #FDCB00;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1A2B42;
+    }
+    
+    .price-breakdown {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    
+    .price-breakdown h4 {
+      margin-top: 0;
+      color: #1A2B42;
+    }
+    
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .total-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #FDCB00;
+      border-top: 2px solid #FDCB00;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    
+    .disclaimer {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .disclaimer i {
+      color: #f39c12;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">أرقى ايجيبت</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الصفحة الرئيسية</a></li>
+        <li><a href="about.html">معلومات عنا</a></li>
+        <li><a href="services.html">خدماتنا</a></li>
+        <li><a href="gallery.html">اعمالنا السابقة</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+        <li><a href="calculator.html" class="active">حاسبة الأسعار</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('https://picsum.photos/1920/600?random=80') no-repeat center/cover;">
+      <h2>حاسبة الأسعار</h2>
+      <p>احصل على تقدير سريع لتكلفة مشروعك</p>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="section-padding">
+      <h2 class="section-heading">احسب تكلفة مشروعك</h2>
+      <p style="text-align: center; font-size: 18px; margin-bottom: 40px; color: #666;">
+        استخدم حاسباتنا للحصول على تقدير أولي لتكلفة مشروعك. للحصول على سعر دقيق، يرجى طلب معاينة مجانية.
+      </p>
+      
+      <div class="calculator-container">
+        <!-- حاسبة الألوميتال -->
+        <div class="calculator">
+          <h3 class="alum">
+            <i class="fas fa-window-maximize"></i>
+            حاسبة الألوميتال
+          </h3>
+          
+          <div class="form-group">
+            <label>الطول (متر)</label>
+            <input type="number" id="alum-length" placeholder="أدخل الطول" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>العرض (متر)</label>
+            <input type="number" id="alum-width" placeholder="أدخل العرض" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>نوع القطاع</label>
+            <select id="alum-type">
+              <option value="1200">قطاع جامبو (1200 جنيه/م²)</option>
+              <option value="1000">قطاع تانجو (1000 جنيه/م²)</option>
+              <option value="800">قطاع PS (800 جنيه/م²)</option>
+              <option value="600">قطاع صغير (600 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>اللون</label>
+            <select id="alum-color">
+              <option value="0">أبيض (بدون إضافة)</option>
+              <option value="100">أسود (+100 جنيه/م²)</option>
+              <option value="150">خشبي (+150 جنيه/م²)</option>
+              <option value="50">فضي (+50 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>الاستخدام</label>
+            <select id="alum-use">
+              <option value="0">شبابيك (بدون إضافة)</option>
+              <option value="200">أبواب (+200 جنيه/م²)</option>
+              <option value="300">واجهات (+300 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <button class="calc-btn" onclick="calcAlum()">
+            <i class="fas fa-calculator"></i> احسب السعر
+          </button>
+          
+          <div id="alum-result" class="result">أدخل البيانات لحساب السعر</div>
+          <div id="alum-breakdown" class="price-breakdown" style="display: none;"></div>
+        </div>
+
+        <!-- حاسبة السيكوريت -->
+        <div class="calculator">
+          <h3 class="secu">
+            <i class="fas fa-glass"></i>
+            حاسبة السيكوريت
+          </h3>
+          
+          <div class="form-group">
+            <label>الطول (متر)</label>
+            <input type="number" id="secu-length" placeholder="أدخل الطول" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>العرض (متر)</label>
+            <input type="number" id="secu-width" placeholder="أدخل العرض" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>سماكة الزجاج</label>
+            <select id="secu-thickness">
+              <option value="800">6 مم (800 جنيه/م²)</option>
+              <option value="1000">8 مم (1000 جنيه/م²)</option>
+              <option value="1200">10 مم (1200 جنيه/م²)</option>
+              <option value="1500">12 مم (1500 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>النوع</label>
+            <select id="secu-type">
+              <option value="0">أبواب سيكوريت (بدون إضافة)</option>
+              <option value="200">واجهات محلات (+200 جنيه/م²)</option>
+              <option value="150">فواصل مكتبية (+150 جنيه/م²)</option>
+              <option value="300">سقف زجاجي (+300 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <button class="calc-btn" onclick="calcSecu()">
+            <i class="fas fa-calculator"></i> احسب السعر
+          </button>
+          
+          <div id="secu-result" class="result">أدخل البيانات لحساب السعر</div>
+          <div id="secu-breakdown" class="price-breakdown" style="display: none;"></div>
+        </div>
+
+        <!-- حاسبة الشتر -->
+        <div class="calculator">
+          <h3 class="shut">
+            <i class="fas fa-bars"></i>
+            حاسبة الشتر
+          </h3>
+          
+          <div class="form-group">
+            <label>الطول (متر)</label>
+            <input type="number" id="shut-length" placeholder="أدخل الطول" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>العرض (متر)</label>
+            <input type="number" id="shut-width" placeholder="أدخل العرض" step="0.1" min="0">
+          </div>
+          
+          <div class="form-group">
+            <label>النوع</label>
+            <select id="shut-type">
+              <option value="600">شتر يدوي (600 جنيه/م²)</option>
+              <option value="1200">شتر كهربائي (1200 جنيه/م²)</option>
+              <option value="800">شتر أمان (800 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>المادة</label>
+            <select id="shut-material">
+              <option value="0">ألوميتال عادي (بدون إضافة)</option>
+              <option value="200">ألوميتال مقوى (+200 جنيه/م²)</option>
+              <option value="300">ستانلس ستيل (+300 جنيه/م²)</option>
+            </select>
+          </div>
+          
+          <button class="calc-btn" onclick="calcShut()">
+            <i class="fas fa-calculator"></i> احسب السعر
+          </button>
+          
+          <div id="shut-result" class="result">أدخل البيانات لحساب السعر</div>
+          <div id="shut-breakdown" class="price-breakdown" style="display: none;"></div>
+        </div>
+      </div>
+      
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        <i class="fas fa-info-circle"></i>
+        <strong>ملاحظة مهمة:</strong> الأسعار المعروضة تقديرية وقد تختلف حسب المواصفات النهائية والموقع. 
+        للحصول على سعر دقيق ونهائي، يرجى طلب معاينة مجانية من خبرائنا.
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section-padding" style="background-color: #1A2B42; color: white; text-align: center;">
+      <h2 style="color: white; margin-bottom: 20px;">هل تريد سعراً دقيقاً؟</h2>
+      <p style="font-size: 18px; margin-bottom: 30px;">
+        احجز معاينة مجانية الآن للحصول على قياس دقيق وسعر نهائي لمشروعك
+      </p>
+      <button class="btn" onclick="window.location.href='contact.html'">احجز معاينة مجانية</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 جميع الحقوق محفوظة - أرقى ايجيبت</p>
+  </footer>
+
+  <script>
+    function calcAlum() {
+      const length = parseFloat(document.getElementById("alum-length").value);
+      const width = parseFloat(document.getElementById("alum-width").value);
+      const type = parseInt(document.getElementById("alum-type").value);
+      const color = parseInt(document.getElementById("alum-color").value);
+      const use = parseInt(document.getElementById("alum-use").value);
+      
+      if (length && width && length > 0 && width > 0) {
+        const area = length * width;
+        const basePrice = type * area;
+        const colorPrice = color * area;
+        const usePrice = use * area;
+        const totalPrice = basePrice + colorPrice + usePrice;
+        
+        document.getElementById("alum-result").innerHTML = 
+          `<i class="fas fa-money-bill-wave"></i> السعر التقديري: ${totalPrice.toLocaleString()} جنيه`;
+        
+        const breakdown = document.getElementById("alum-breakdown");
+        breakdown.style.display = "block";
+        breakdown.innerHTML = `
+          <h4>تفاصيل السعر:</h4>
+          <div class="price-item">
+            <span>المساحة:</span>
+            <span>${area.toFixed(2)} م²</span>
+          </div>
+          <div class="price-item">
+            <span>سعر القطاع:</span>
+            <span>${basePrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item">
+            <span>إضافة اللون:</span>
+            <span>${colorPrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item">
+            <span>إضافة الاستخدام:</span>
+            <span>${usePrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item total-price">
+            <span>الإجمالي:</span>
+            <span>${totalPrice.toLocaleString()} جنيه</span>
+          </div>
+        `;
+      } else {
+        document.getElementById("alum-result").innerText = "يرجى إدخال قيم صحيحة للطول والعرض";
+        document.getElementById("alum-breakdown").style.display = "none";
+      }
+    }
+
+    function calcSecu() {
+      const length = parseFloat(document.getElementById("secu-length").value);
+      const width = parseFloat(document.getElementById("secu-width").value);
+      const thickness = parseInt(document.getElementById("secu-thickness").value);
+      const type = parseInt(document.getElementById("secu-type").value);
+      
+      if (length && width && length > 0 && width > 0) {
+        const area = length * width;
+        const basePrice = thickness * area;
+        const typePrice = type * area;
+        const totalPrice = basePrice + typePrice;
+        
+        document.getElementById("secu-result").innerHTML = 
+          `<i class="fas fa-money-bill-wave"></i> السعر التقديري: ${totalPrice.toLocaleString()} جنيه`;
+        
+        const breakdown = document.getElementById("secu-breakdown");
+        breakdown.style.display = "block";
+        breakdown.innerHTML = `
+          <h4>تفاصيل السعر:</h4>
+          <div class="price-item">
+            <span>المساحة:</span>
+            <span>${area.toFixed(2)} م²</span>
+          </div>
+          <div class="price-item">
+            <span>سعر الزجاج:</span>
+            <span>${basePrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item">
+            <span>إضافة النوع:</span>
+            <span>${typePrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item total-price">
+            <span>الإجمالي:</span>
+            <span>${totalPrice.toLocaleString()} جنيه</span>
+          </div>
+        `;
+      } else {
+        document.getElementById("secu-result").innerText = "يرجى إدخال قيم صحيحة للطول والعرض";
+        document.getElementById("secu-breakdown").style.display = "none";
+      }
+    }
+
+    function calcShut() {
+      const length = parseFloat(document.getElementById("shut-length").value);
+      const width = parseFloat(document.getElementById("shut-width").value);
+      const type = parseInt(document.getElementById("shut-type").value);
+      const material = parseInt(document.getElementById("shut-material").value);
+      
+      if (length && width && length > 0 && width > 0) {
+        const area = length * width;
+        const basePrice = type * area;
+        const materialPrice = material * area;
+        const totalPrice = basePrice + materialPrice;
+        
+        document.getElementById("shut-result").innerHTML = 
+          `<i class="fas fa-money-bill-wave"></i> السعر التقديري: ${totalPrice.toLocaleString()} جنيه`;
+        
+        const breakdown = document.getElementById("shut-breakdown");
+        breakdown.style.display = "block";
+        breakdown.innerHTML = `
+          <h4>تفاصيل السعر:</h4>
+          <div class="price-item">
+            <span>المساحة:</span>
+            <span>${area.toFixed(2)} م²</span>
+          </div>
+          <div class="price-item">
+            <span>سعر النوع:</span>
+            <span>${basePrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item">
+            <span>إضافة المادة:</span>
+            <span>${materialPrice.toLocaleString()} جنيه</span>
+          </div>
+          <div class="price-item total-price">
+            <span>الإجمالي:</span>
+            <span>${totalPrice.toLocaleString()} جنيه</span>
+          </div>
+        `;
+      } else {
+        document.getElementById("shut-result").innerText = "يرجى إدخال قيم صحيحة للطول والعرض";
+        document.getElementById("shut-breakdown").style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

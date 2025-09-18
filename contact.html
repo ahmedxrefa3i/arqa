@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا - أرقى ايجيبت</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    
+    .contact-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .contact-card i {
+      font-size: 48px;
+      color: #FDCB00;
+      margin-bottom: 15px;
+    }
+    
+    .contact-card h3 {
+      color: #1A2B42;
+      margin-bottom: 10px;
+    }
+    
+    .contact-card p {
+      color: #666;
+      margin: 5px 0;
+    }
+    
+    .contact-card a {
+      color: #1A2B42;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .contact-card a:hover {
+      color: #FDCB00;
+    }
+    
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    #modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    #modal-content h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1A2B42;
+    }
+    
+    .close-btn {
+      background: #ccc !important;
+      color: #333 !important;
+    }
+    
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      left: 40px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">أرقى ايجيبت</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الصفحة الرئيسية</a></li>
+        <li><a href="about.html">معلومات عنا</a></li>
+        <li><a href="services.html">خدماتنا</a></li>
+        <li><a href="gallery.html">اعمالنا السابقة</a></li>
+        <li><a href="contact.html" class="active">تواصل معنا</a></li>
+        <li><a href="calculator.html">حاسبة الأسعار</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('https://picsum.photos/1920/600?random=70') no-repeat center/cover;">
+      <h2>تواصل معنا</h2>
+      <p>نحن هنا لخدمتك وتحقيق رؤيتك</p>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section-padding">
+      <h2 class="section-heading">معلومات التواصل</h2>
+      <div class="contact-info">
+        <div class="contact-card">
+          <i class="fas fa-phone"></i>
+          <h3>اتصل بنا</h3>
+          <p><a href="tel:01144468449">01144468449</a></p>
+          <p>متاح 24/7 لخدمتك</p>
+        </div>
+        
+        <div class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h3>البريد الإلكتروني</h3>
+          <p><a href="mailto:info@arqaegypt.com">info@arqaegypt.com</a></p>
+          <p>راسلنا في أي وقت</p>
+        </div>
+        
+        <div class="contact-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>العنوان</h3>
+          <p>القاهرة، مصر</p>
+          <p>نخدم جميع المحافظات</p>
+        </div>
+        
+        <div class="contact-card">
+          <i class="fas fa-clock"></i>
+          <h3>ساعات العمل</h3>
+          <p>السبت - الخميس</p>
+          <p>9:00 ص - 6:00 م</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section-padding" style="background-color: #f4f8ff;">
+      <h2 class="section-heading">أرسل لنا رسالة</h2>
+      <div class="contact-form">
+        <form>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <input type="text" placeholder="الاسم بالكامل" required>
+            <input type="tel" placeholder="رقم الهاتف" required>
+          </div>
+          <input type="email" placeholder="البريد الإلكتروني" required>
+          <select required>
+            <option value="">اختر نوع الخدمة</option>
+            <option value="shower">كبائن الشاور</option>
+            <option value="kitchen">مطابخ ألوميتال</option>
+            <option value="glass">زجاج سيكوريت</option>
+            <option value="facades">واجهات زجاجية</option>
+            <option value="maintenance">صيانة</option>
+            <option value="other">أخرى</option>
+          </select>
+          <textarea placeholder="اكتب رسالتك هنا... (اذكر تفاصيل المشروع، المساحة، الموقع)" rows="5" required></textarea>
+          <button type="submit">إرسال الرسالة</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="section-padding">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 class="section-heading">احجز معاينة مجانية</h2>
+        <p style="font-size: 18px; margin-bottom: 30px;">
+          احصل على استشارة مجانية وقياس دقيق لمشروعك من خبرائنا المتخصصين
+        </p>
+        <button id="openModal" style="padding: 15px 40px; background-color: #FDCB00; color: #1A2B42; font-size: 20px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s;">
+          احجز معاينة مجانية
+        </button>
+      </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="section-padding" style="background-color: #1A2B42; color: white;">
+      <h2 style="color: white; text-align: center; margin-bottom: 30px;">تابعنا على وسائل التواصل الاجتماعي</h2>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/arqaegypt" target="_blank" class="fa fa-facebook"></a>
+        <a href="https://www.instagram.com/arqaegypt" target="_blank" class="fa fa-instagram"></a>
+        <a href="https://www.linkedin.com/company/arqaegypt" target="_blank" class="fa fa-linkedin"></a>
+        <a href="https://wa.me/201144468449" target="_blank" class="fa fa-whatsapp"></a>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section-padding">
+      <h2 class="section-heading">موقعنا</h2>
+      <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <iframe
+          src="https://www.google.com/maps?q=30.0444,31.2357&hl=ar&z=15&output=embed"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding" style="background-color: #f4f8ff;">
+      <h2 class="section-heading">الأسئلة الشائعة</h2>
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="card" style="margin-bottom: 20px;">
+          <h3 style="color: #1A2B42; margin-bottom: 10px;">هل تقدمون خدمة المعاينة المجانية؟</h3>
+          <p>نعم، نقدم خدمة المعاينة والاستشارة المجانية لجميع عملائنا مع أخذ القياسات الدقيقة.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 20px;">
+          <h3 style="color: #1A2B42; margin-bottom: 10px;">ما هي مدة الضمان على أعمالكم؟</h3>
+          <p>نقدم ضمان شامل على جميع أعمالنا لمدة سنتين مع خدمة صيانة مجانية خلال فترة الضمان.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 20px;">
+          <h3 style="color: #1A2B42; margin-bottom: 10px;">هل تخدمون جميع المحافظات؟</h3>
+          <p>نعم، لدينا فريق عمل يغطي جميع محافظات الجمهورية ونقدم خدماتنا في كل مكان.</p>
+        </div>
+        
+        <div class="card">
+          <h3 style="color: #1A2B42; margin-bottom: 10px;">كم تستغرق مدة تنفيذ المشروع؟</h3>
+          <p>تختلف مدة التنفيذ حسب حجم المشروع، ولكن عادة ما تتراوح بين 3-10 أيام عمل.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Booking Modal -->
+  <div id="modal">
+    <div id="modal-content">
+      <h3>حجز معاينة مجانية</h3>
+      <form class="booking-form">
+        <input type="text" placeholder="الاسم الكامل" required>
+        <input type="tel" placeholder="رقم الهاتف" required>
+        <input type="email" placeholder="البريد الإلكتروني" required>
+        <input type="text" placeholder="العنوان بالتفصيل" required>
+        <label>اختر نوع الخدمة:</label>
+        <select required>
+          <option value="">اختر الخدمة</option>
+          <option value="shower">كبائن الشاور</option>
+          <option value="kitchen">مطابخ ألوميتال</option>
+          <option value="glass">زجاج سيكوريت</option>
+          <option value="facades">واجهات زجاجية</option>
+          <option value="maintenance">صيانة</option>
+          <option value="other">أخرى</option>
+        </select>
+        <label>اختر التاريخ والوقت المفضل:</label>
+        <input type="datetime-local" required>
+        <textarea placeholder="ملاحظات إضافية (اختياري)" rows="3"></textarea>
+        <button type="submit">إرسال طلب الحجز</button>
+        <button type="button" class="close-btn" id="closeModal">إغلاق</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/201144468449" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <footer>
+    <p>© 2025 جميع الحقوق محفوظة - أرقى ايجيبت</p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const openModalBtn = document.getElementById("openModal");
+    const closeModalBtn = document.getElementById("closeModal");
+
+    openModalBtn.onclick = () => {
+      modal.style.display = "flex";
+    }
+
+    closeModalBtn.onclick = () => {
+      modal.style.display = "none";
+    }
+
+    window.onclick = (e) => {
+      if (e.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Form submission handlers
+    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+    });
+
+    document.querySelector('.booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('تم حجز المعاينة بنجاح! سنتواصل معك لتأكيد الموعد.');
+      modal.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>

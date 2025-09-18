@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اعمالنا السابقة - أرقى ايجيبت</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(26, 43, 66, 0.9));
+      color: white;
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 10px 20px;
+      background-color: white;
+      border: 2px solid #1A2B42;
+      color: #1A2B42;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: #1A2B42;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">أرقى ايجيبت</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">الصفحة الرئيسية</a></li>
+        <li><a href="about.html">معلومات عنا</a></li>
+        <li><a href="services.html">خدماتنا</a></li>
+        <li><a href="gallery.html" class="active">اعمالنا السابقة</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+        <li><a href="calculator.html">حاسبة الأسعار</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('https://picsum.photos/1920/600?random=40') no-repeat center/cover;">
+      <h2>معرض أعمالنا</h2>
+      <p>اكتشف مجموعة من أفضل أعمالنا في مجال الألوميتال والزجاج السيكوريت</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section-padding">
+      <h2 class="section-heading">أعمالنا السابقة</h2>
+      
+      <!-- Filter Buttons -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterGallery('all')">جميع الأعمال</button>
+        <button class="filter-btn" onclick="filterGallery('shower')">كبائن الشاور</button>
+        <button class="filter-btn" onclick="filterGallery('kitchen')">مطابخ ألوميتال</button>
+        <button class="filter-btn" onclick="filterGallery('glass')">زجاج سيكوريت</button>
+        <button class="filter-btn" onclick="filterGallery('facades')">واجهات زجاجية</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="shower">
+          <img src="https://picsum.photos/400/300?random=41" alt="كابينة شاور عصرية">
+          <div class="gallery-overlay">
+            <h3>كابينة شاور عصرية</h3>
+            <p>تصميم أنيق وعملي لحمام عصري</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="kitchen">
+          <img src="https://picsum.photos/400/300?random=42" alt="مطبخ ألوميتال حديث">
+          <div class="gallery-overlay">
+            <h3>مطبخ ألوميتال حديث</h3>
+            <p>تصميم عملي يجمع بين الجمال والوظيفة</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="glass">
+          <img src="https://picsum.photos/400/300?random=43" alt="فاصل زجاجي للمكتب">
+          <div class="gallery-overlay">
+            <h3>فاصل زجاجي للمكتب</h3>
+            <p>حلول عملية للمساحات المكتبية</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="facades">
+          <img src="https://picsum.photos/400/300?random=44" alt="واجهة زجاجية للمحل">
+          <div class="gallery-overlay">
+            <h3>واجهة زجاجية للمحل</h3>
+            <p>واجهة أنيقة تجذب العملاء</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="shower">
+          <img src="https://picsum.photos/400/300?random=45" alt="كابينة شاور مع إضاءة">
+          <div class="gallery-overlay">
+            <h3>كابينة شاور مع إضاءة</h3>
+            <p>تصميم فاخر مع إضاءة LED</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="kitchen">
+          <img src="https://picsum.photos/400/300?random=46" alt="مطبخ ألوميتال بتصميم مفتوح">
+          <div class="gallery-overlay">
+            <h3>مطبخ ألوميتال بتصميم مفتوح</h3>
+            <p>مطبخ عصري للمساحات المفتوحة</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="glass">
+          <img src="https://picsum.photos/400/300?random=47" alt="باب زجاجي سيكوريت">
+          <div class="gallery-overlay">
+            <h3>باب زجاجي سيكوريت</h3>
+            <p>أمان وأناقة في تصميم واحد</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="facades">
+          <img src="https://picsum.photos/400/300?random=48" alt="واجهة مبنى تجاري">
+          <div class="gallery-overlay">
+            <h3>واجهة مبنى تجاري</h3>
+            <p>تصميم احترافي للمباني التجارية</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="shower">
+          <img src="https://picsum.photos/400/300?random=49" alt="كابينة شاور زاوية">
+          <div class="gallery-overlay">
+            <h3>كابينة شاور زاوية</h3>
+            <p>استغلال أمثل للمساحات الصغيرة</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="kitchen">
+          <img src="https://picsum.photos/400/300?random=50" alt="مطبخ ألوميتال بلونين">
+          <div class="gallery-overlay">
+            <h3>مطبخ ألوميتال بلونين</h3>
+            <p>تصميم عصري بألوان متناسقة</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="glass">
+          <img src="https://picsum.photos/400/300?random=51" alt="سلم زجاجي">
+          <div class="gallery-overlay">
+            <h3>سلم زجاجي</h3>
+            <p>تصميم أنيق يضفي لمسة عصرية</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="facades">
+          <img src="https://picsum.photos/400/300?random=52" alt="واجهة فيلا زجاجية">
+          <div class="gallery-overlay">
+            <h3>واجهة فيلا زجاجية</h3>
+            <p>فخامة وأناقة للمنازل الراقية</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section-padding" style="background-color: #1A2B42; color: white;">
+      <h2 style="color: white; text-align: center; margin-bottom: 40px;">إحصائيات أعمالنا</h2>
+      <div class="grid-container">
+        <div class="card text-center" style="background-color: rgba(255,255,255,0.1); color: white;">
+          <h3 style="font-size: 48px; color: #FDCB00; margin-bottom: 10px;">600+</h3>
+          <p style="font-size: 18px; font-weight: bold;">مشروع تم تنفيذه بنجاح</p>
+        </div>
+        <div class="card text-center" style="background-color: rgba(255,255,255,0.1); color: white;">
+          <h3 style="font-size: 48px; color: #FDCB00; margin-bottom: 10px;">95%</h3>
+          <p style="font-size: 18px; font-weight: bold;">من عملائنا يتعاملون معنا مرة ثانية</p>
+        </div>
+        <div class="card text-center" style="background-color: rgba(255,255,255,0.1); color: white;">
+          <h3 style="font-size: 48px; color: #FDCB00; margin-bottom: 10px;">12+</h3>
+          <p style="font-size: 18px; font-weight: bold;">سنة خبرة في المجال</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding">
+      <h2 class="section-heading">آراء عملائنا</h2>
+      <div class="grid-container">
+        <div class="card">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="https://picsum.photos/60/60?random=60" alt="علي محمد" style="width: 60px; height: 60px; border-radius: 50%; margin-left: 15px;">
+            <div>
+              <h4 style="margin: 0; color: #1A2B42;">علي محمد</h4>
+              <div style="color: #FDCB00;">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p>"طلبت تركيب شبابيك ألوميتال للشقة بالكامل. شغل نظيف وخامات ممتازة. أنصح بالتعامل معهم."</p>
+        </div>
+        
+        <div class="card">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="https://picsum.photos/60/60?random=61" alt="خالد حسن" style="width: 60px; height: 60px; border-radius: 50%; margin-left: 15px;">
+            <div>
+              <h4 style="margin: 0; color: #1A2B42;">خالد حسن</h4>
+              <div style="color: #FDCB00;">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p>"من أفضل الشركات اللي تعاملت معاها في تركيب زجاج السيكوريت. شغل نظيف ودقة عالية."</p>
+        </div>
+        
+        <div class="card">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="https://picsum.photos/60/60?random=62" alt="محمود علي" style="width: 60px; height: 60px; border-radius: 50%; margin-left: 15px;">
+            <div>
+              <h4 style="margin: 0; color: #1A2B42;">محمود علي</h4>
+              <div style="color: #FDCB00;">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p>"ركبولي شيش حصيرة ألوميتال بجودة عالية وبسعر مناسب. سرعة في التنفيذ وتعامل راقٍ."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section-padding text-center" style="background-color: #f4f8ff;">
+      <h2 class="section-heading">هل أعجبتك أعمالنا؟</h2>
+      <p style="font-size: 18px; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        تواصل معنا الآن للحصول على استشارة مجانية وتحويل رؤيتك إلى واقع بأيدي خبراء متخصصين.
+      </p>
+      <button class="btn" onclick="window.location.href='contact.html'">تواصل معنا</button>
+      <button class="btn" onclick="window.location.href='calculator.html'" style="margin-right: 15px;">احسب التكلفة</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 جميع الحقوق محفوظة - أرقى ايجيبت</p>
+  </footer>
+
+  <script>
+    function filterGallery(category) {
+      const items = document.querySelectorAll('.gallery-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      // Remove active class from all buttons
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      event.target.classList.add('active');
+      
+      // Show/hide items based on category
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
